@@ -1,10 +1,11 @@
 from tkinter import * 
 from tkinter import messagebox
 import base64
+import os
 
 # Função para desencriptar a mensagem
 def desemcriptar():
-    senha = code.get()  # Obtém a senha inserida
+    senha = code.get()  # Obtém a senha inserida pelo usuário
 
     if senha == '1234':  # Verifica se a senha está correta
         # Cria uma nova janela para mostrar o texto desencriptado
@@ -32,7 +33,7 @@ def desemcriptar():
 
 # Função para encriptar a mensagem
 def encriptar():
-    senha = code.get()  # Obtém a senha inserida
+    senha = code.get()  # Obtém a senha inserida pelo usuário
 
     if senha == '1234':  # Verifica se a senha está correta
         # Cria uma nova janela para mostrar o texto encriptado
@@ -73,3 +74,27 @@ def tela_principal():
     tela.geometry('375x398')
 
     # Ícone da janela
+    imagem_icone = PhotoImage(file='chaves.png')
+    tela.iconphoto(False, imagem_icone)
+
+    tela.title('PctApp')
+
+    # Label e campo de texto para inserção da mensagem
+    Label(text='Insira seu texto para encriptação e desemcriptação', fg='black', font=('calibri', 13)).place(x=10, y=10)
+    texto1 = Text(font='Robote 20', bg='white', relief='groove', wrap='word', bd=0)
+    texto1.place(x=10, y=50, width=355, height=100)
+
+    # Label e campo de entrada para a senha
+    Label(text='Coloque sua senha para encriptar ou desemcriptar', fg='black', font=('calibri', 13)).place(x=10, y=170)
+    code = StringVar()
+    Entry(textvariable=code, width=19, bd=0, font=('arial', 25), show='*').place(x=10, y=200)
+
+    # Botões para encriptar, desencriptar e resetar
+    Button(text='ENCRIPTAR', height='2', width=23, bg='#ed3833', fg='white', bd=0, command=encriptar).place(x=10, y=250)
+    Button(text='DESEMCRIPTAR', height='2', width=23, bg='#00bd56', fg='white', bd=0, command=desemcriptar).place(x=200, y=250)
+    Button(text='RESET', height='2', width=50, bg='#1089ff', fg='white', bd=0, command=reset).place(x=10, y=300)
+
+    tela.mainloop()
+
+# Chama a função para iniciar a interface gráfica
+tela_principal()
